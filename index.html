@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rani</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #ffb6c1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 15vw, 10rem);
+      color: #fff;
+      text-shadow:
+        0 0 20px #ff69b4,
+        0 0 40px #ff69b4,
+        0 0 80px #ff1493;
+      letter-spacing: 0.1em;
+      user-select: none;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.4rem;
+      animation: float linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>rani</h1>
+
+  <script>
+    const SPARKLES = ['✦', '✧', '✩', '★', '✨', '⋆', '˚'];
+
+    function spawn() {
+      const el = document.createElement('span');
+      el.className = 'sparkle';
+      el.textContent = SPARKLES[Math.floor(Math.random() * SPARKLES.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.color = `hsl(${Math.random() * 40 + 320}, 90%, 80%)`;
+      const dur = 4 + Math.random() * 5;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = Math.random() * -dur + 's';
+      el.style.fontSize = (0.8 + Math.random() * 1.6) + 'rem';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), (dur + 1) * 1000);
+    }
+
+    // initial burst
+    for (let i = 0; i < 40; i++) spawn();
+    setInterval(spawn, 300);
+  </script>
+</body>
+</html>
