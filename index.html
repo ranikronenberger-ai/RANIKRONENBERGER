@@ -3,70 +3,837 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rani</title>
+  <title>Rani Kronenberger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;900&family=Patrick+Hand&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --pink: #f2a0aa;
+      --black: #111;
+      --white: #fff;
+    }
+
     body {
-      background: #ffb6c1;
-      min-height: 100vh;
+      background: repeating-linear-gradient(
+        90deg,
+        #f0c8d4 0px,
+        #f0c8d4 2px,
+        #ffffff 2px,
+        #ffffff 7px
+      );
+      color: var(--black);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .white-box {
+      background: #fff;
+      margin: 2rem auto;
+      padding: 3rem 3rem;
+      max-width: 1200px;
+      width: 92%;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: Georgia, serif;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--black);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav a {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--pink);
+    }
+
+    /* ── EDITORIAL HERO ── */
+    .hero-editorial {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      min-height: 500px;
       overflow: hidden;
     }
 
-    h1 {
-      font-size: clamp(4rem, 15vw, 10rem);
-      color: #fff;
-      text-shadow:
-        0 0 20px #ff69b4,
-        0 0 40px #ff69b4,
-        0 0 80px #ff1493;
-      letter-spacing: 0.1em;
-      user-select: none;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
-    .sparkle {
-      position: fixed;
+    /* grey placeholder shown until photo is added */
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      background: #ccc;
+    }
+
+    .hero-name-big {
+      position: absolute;
+      bottom: -0.05em;
+      left: 0;
+      right: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 11vw, 11rem);
+      color: #111;
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      text-align: center;
+      white-space: nowrap;
+      mix-blend-mode: multiply;
+      z-index: 2;
+    }
+
+    /* ── ROLES STACKED ── */
+    .roles-section {
+      background: transparent;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .roles-left {
+      border-right: 1px solid #eee;
+      padding: 1rem 1.5rem;
+    }
+
+    .role-line {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 5rem);
+      color: #111;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid #eee;
+      padding: 0.2rem 0;
+      white-space: nowrap;
+    }
+
+    .role-line:last-child { border-bottom: none; }
+
+    .role-line .role-note {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: #aaa;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+
+    .roles-right {
+      position: relative;
+      min-height: 400px;
+      background: #fafafa;
+    }
+
+    .roles-photo {
+      position: absolute;
+      object-fit: cover;
+      background: #ccc;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    /* ── FOLDERS ── */
+    .folders-center-text {
+      position: absolute;
+      top: 38%;
+      left: 28%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(4rem, 11vw, 9rem);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
       pointer-events: none;
-      font-size: 1.4rem;
-      animation: float linear infinite;
-      opacity: 0;
+      z-index: 1;
+      white-space: nowrap;
     }
 
-    @keyframes float {
-      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    .folders-section {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .folder-item {
+      position: absolute;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .folder-mac {
+      position: relative;
+      width: 120px;
+      transition: transform 0.2s ease;
+    }
+
+    .folder-item:hover .folder-mac {
+      transform: translateY(-6px) scale(1.05);
+    }
+
+    .folder-mac-back {
+      position: relative;
+      width: 120px;
+      height: 90px;
+      background: #f48fb1;
+      border-radius: 3px 10px 10px 10px;
+      box-shadow: 0 6px 18px rgba(244,143,177,0.35);
+    }
+
+    .folder-mac-back::before {
+      content: '';
+      position: absolute;
+      top: -13px;
+      left: 0;
+      width: 48px;
+      height: 16px;
+      background: #f48fb1;
+      border-radius: 6px 14px 0 0;
+    }
+
+    .folder-mac-front {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 120px;
+      height: 72px;
+      background: linear-gradient(160deg, #fce4ec 0%, #f8bbd0 100%);
+      border-radius: 3px 3px 10px 10px;
+    }
+
+    .folder-item-label {
+      margin-top: 0.55rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .folder-detail {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1.5px solid #f8bbd0;
+      padding: 0.85rem 1rem;
+      min-width: 200px;
+      z-index: 50;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      text-align: left;
+      white-space: normal;
+    }
+
+    .folder-item:hover .folder-detail {
+      display: block;
+    }
+
+    .folder-detail-below {
+      top: calc(100% + 12px);
+      bottom: auto;
+    }
+
+    .folder-detail-title {
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.45rem;
+    }
+
+    .folder-detail p {
+      font-size: 0.6rem;
+      color: #222;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .folder-detail .when {
+      font-size: 0.55rem;
+      color: #aaa;
+      margin-top: 0.35rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .publications-section {
+      background: #fff;
+      padding: 4rem 3rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      width: 92%;
+    }
+
+    .publications-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: #111;
+      letter-spacing: 0.03em;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #111;
+      padding-bottom: 0.5rem;
+    }
+
+    .pub-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .pub-item:last-child { border-bottom: none; }
+
+    .pub-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111;
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #f48fb1;
+      transition: color 0.2s;
+    }
+
+    .pub-title a:hover { color: var(--pink); }
+
+    .pub-meta {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.75rem;
+      color: #888;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── LANGUAGES ── */
+    .languages-section {
+      background: #fff;
+      padding: 1.2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      width: 92%;
+    }
+
+    .languages-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      margin-top: 0.6rem;
+    }
+
+    .lang-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: #888;
+      margin-right: 0.6rem;
+    }
+
+    .lang-entry {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      color: #111;
+      letter-spacing: 0.06em;
+    }
+
+    .lang-entry sup {
+      font-family: 'Figtree', sans-serif;
+      color: var(--pink);
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-left: 0.15rem;
+    }
+
+    .lang-dot {
+      color: #bbb;
+      font-size: 0.6rem;
+    }
+
+    /* ── CONTACT DIVIDER ── */
+    .contact-divider {
+      background: #fce4ec;
+      padding: 1.2rem 2rem;
+      text-align: right;
+    }
+
+    .contact-divider span {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 900;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      min-height: 100vh;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+
+    .contact-card {
+      width: min(620px, 88vw);
+      background: #ffffff;
+      padding: 3.5rem 3rem 3rem;
+      transform: rotate(-1deg);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.3),
+        0 8px 16px rgba(0,0,0,0.4),
+        0 24px 60px rgba(0,0,0,0.6);
+    }
+
+    .contact-mail-me {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(3.5rem, 13vw, 7.5rem);
+      color: #0d0d0d;
+      line-height: 0.95;
+      display: block;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-name {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .contact-email {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(1.4rem, 5vw, 2.6rem);
+      color: #0d0d0d;
+      text-decoration: none;
+      display: block;
+      letter-spacing: 0.01em;
+    }
+
+    .contact-email:hover { opacity: 0.6; }
+
+    /* ── FORTUNE COOKIE ── */
+    .fortune-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInOverlay 0.6s ease forwards;
+    }
+
+    .fortune-overlay.visible { display: flex; }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .fortune-modal {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .fortune-nudge {
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+    }
+
+    .cookie-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+    }
+
+    .cookie {
+      position: relative;
+      width: 300px;
+      height: 178px;
+    }
+
+    .cookie-half-left,
+    .cookie-half-right {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 178px;
+      background: url('cookie.png') center/cover no-repeat;
+      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    }
+
+    .cookie-half-left  { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
+    .cookie-half-right { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
+
+    .cookie-wrap:hover .cookie-half-left  { transform: rotate(-3deg); }
+    .cookie-wrap:hover .cookie-half-right { transform: rotate(3deg); }
+
+    .cookie.cracked .cookie-half-left  { transform: translate(-40px, -14px) rotate(-22deg); }
+    .cookie.cracked .cookie-half-right { transform: translate(40px,  -14px) rotate(22deg); }
+
+    .cookie-paper {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0px) scaleY(0);
+      transform-origin: bottom center;
+      width: 220px;
+      padding: 1rem 1.2rem 0.9rem;
+      background: #fefefe;
+      font-family: Georgia, serif;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: #1a1a1a;
+      text-align: center;
+      transition: transform 0.55s 0.3s cubic-bezier(.4,0,.2,1);
+      z-index: 5;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 6px 20px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(0,0,0,0.04);
+      border-top: 1px dashed #ddd;
+    }
+
+    .cookie.cracked .cookie-paper {
+      transform: translateX(-50%) translateY(40px) scaleY(1);
+    }
+
+    .cookie-hint {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Helvetica Neue', sans-serif;
+      transition: opacity 0.3s;
+    }
+
+    .cookie.cracked ~ .cookie-hint { opacity: 0; }
+
+    .fortune-close {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      display: none;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .fortune-close.visible { display: block; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid #eee;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1.2rem;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #555;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover { color: var(--pink); }
+
+    .footer-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
-  <h1>rani</h1>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-name" href="#">rani kronenberger</a>
+    <div class="nav-links">
+      <a href="#mission">my mission</a>
+      <a href="#values">values</a>
+      <a href="obsessions.html">obsessions</a>
+      <a href="#publications">publications</a>
+    </div>
+  </nav>
+
+  <!-- EDITORIAL HERO -->
+  <section class="hero-editorial">
+    <!-- swap src="" for your photo path, e.g. src="me.jpg" -->
+    <img class="hero-bg" src="" alt="" onerror="this.style.display='none'">
+    <div class="hero-bg-placeholder"></div>
+    <span class="hero-name-big">rani kronenberger</span>
+  </section>
+
+  <!-- ROLES STACKED -->
+  <section class="roles-section">
+    <div class="roles-left">
+      <div class="role-line">doctor</div>
+      <div class="role-line">PhD researcher</div>
+      <div class="role-line">human-centered design</div>
+      <div class="role-line">creative writer</div>
+      <div class="role-line">surgical resident dropout <span class="role-note">(sorry mom)</span></div>
+    </div>
+    <div class="roles-right">
+      <div class="roles-photo" style="width:140px;height:180px;top:6%;right:12%;transform:rotate(2deg);"></div>
+      <div class="roles-photo" style="width:120px;height:120px;top:38%;left:18%;transform:rotate(-3deg);"></div>
+      <div class="roles-photo" style="width:110px;height:150px;top:55%;right:8%;transform:rotate(1.5deg);"></div>
+    </div>
+  </section>
+
+
+  <!-- LANGUAGES -->
+  <section>
+    <div class="languages-section">
+      <h2 class="publications-heading">languages</h2>
+      <div class="languages-bar">
+        <span class="lang-entry">Flemish <sup>C2</sup></span>
+        <span class="lang-dot">·</span>
+        <span class="lang-entry">English <sup>B2</sup></span>
+        <span class="lang-dot">·</span>
+        <span class="lang-entry">French <sup>B1</sup></span>
+        <span class="lang-dot">·</span>
+        <span class="lang-entry">German <sup>A1</sup></span>
+        <span class="lang-dot">·</span>
+        <span class="lang-entry">Sarcasm <sup>native</sup></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="publications-section">
+      <h2 class="publications-heading">publications</h2>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://www.mdpi.com/2306-5354/12/9/924" target="_blank" rel="noopener">Impact of Disinfection and Sterilization on 3D-Printing Resin Performance for Surgical Guides in Cardiac Ablation Surgery</a></p>
+        <p class="pub-meta">Bioengineering · Aug 2025 · Kronenberger R, Kazma R, Amirabadi A et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2025.1538809/full" target="_blank" rel="noopener">2D Speckle-Tracking Echocardiography Assessment of Left Atrial and Left Ventricular Mechanics: Outcomes in Patients with Atrial Fibrillation Treated with Hybrid Ablation and Left Atrial Appendage Surgical Closure</a></p>
+        <p class="pub-meta">Frontiers in Bioengineering and Biotechnology · Mar 2025 · Paparella AM, Pannone L, Pedrizzetti G, Kronenberger R et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://www.ahajournals.org/doi/10.1161/CIRCEP.124.013533" target="_blank" rel="noopener">Endo-Epicardial Mapping of Human Sinus Node In-Vivo: Novel Electrophysiological Findings and Anatomical Correlations</a></p>
+        <p class="pub-meta">Circulation: Arrhythmia and Electrophysiology · Mar 2025 · Eltsov I, Pannone L, Della Rocca DG, de Asmundis C et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39608216/" target="_blank" rel="noopener">CTGAN-Driven Synthetic Data Generation: A Multidisciplinary, Expert-Guided Approach (TIMA)</a></p>
+        <p class="pub-meta">Computer Methods and Programs in Biomedicine · Nov 2024 · Parise O, Kronenberger R, Parise G, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://www.mdpi.com/2227-9059/12/4/869" target="_blank" rel="noopener">Advancing Surgical Arrhythmia Ablation: Novel Insights on 3D Printing Applications and Two Biocompatible Materials</a></p>
+        <p class="pub-meta">Biomedicines · Apr 2024 · Monaco C, Kronenberger R, Talevi G, de Asmundis C et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39156516/" target="_blank" rel="noopener">A Novel Sinus Node Sparing Hybrid Ablation Approach for Inappropriate Sinus Tachycardia</a></p>
+        <p class="pub-meta">JTCVS Techniques · Apr 2024 · Kronenberger R, Pannone L, Monaco C, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38545325/" target="_blank" rel="noopener">Pericarditis Prophylactic Therapy after Sinus Node Sparing Hybrid Ablation for Inappropriate Sinus Tachycardia / Postural Orthostatic Sinus Tachycardia</a></p>
+        <p class="pub-meta">Heart Rhythm O2 · Feb 2024 · de Asmundis C, Marcon L, Pannone L, Kronenberger R, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38155611/" target="_blank" rel="noopener">Redo Procedures after Sinus Node Sparing Hybrid Ablation for Inappropriate Sinus Tachycardia / Postural Orthostatic Sinus Tachycardia</a></p>
+        <p class="pub-meta">EP Europace · Dec 2023 · de Asmundis C, Marcon L, Pannone L, Kronenberger R, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38064697/" target="_blank" rel="noopener">Coronary Artery Disease in Atrial Fibrillation Ablation: Impact on Arrhythmic Outcomes</a></p>
+        <p class="pub-meta">EP Europace · Dec 2023 · Cappello IA, Pannone L, Della Rocca DG, de Asmundis C et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/37756702/" target="_blank" rel="noopener">3D Mapping Challenges in Hybrid Video-Assisted Thoracoscopic Surgical Ablation of Brugada Syndrome</a></p>
+        <p class="pub-meta">Interdisciplinary CardioVascular and Thoracic Surgery · Sep 2023 · Eltsov I, Pannone L, Ramak R, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title">Excision of Atrial Myxoma Through a Totally Thoracoscopic Approach on the Fibrillating Heart</p>
+        <p class="pub-meta">Jun 2023 · Kronenberger R, Bentala M, Devos A, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/37246904/" target="_blank" rel="noopener">Hybrid Atrial Fibrillation Ablation: Long-Term Outcomes from a Single-Centre 10-Year Experience</a></p>
+        <p class="pub-meta">EP Europace · May 2023 · Pannone L, Mouram S, Della Rocca DG, de Asmundis C et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://link.springer.com/article/10.1186/s13019-023-02193-6" target="_blank" rel="noopener">Stiff Left Atrial Syndrome with Pulmonary Veins Occlusion after Percutaneous Radiofrequency Ablation: A Life-Long Complication that Can Lead to Heart Transplantation</a></p>
+        <p class="pub-meta">Journal of Cardiothoracic Surgery · May 2023 · Kronenberger R, Tanaka K, de Asmundis C, La Meir M</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://academic.oup.com/ejcts/article/63/4/ezad140/7143382" target="_blank" rel="noopener">Epicardial Open Chest Ventricular Tachycardia Ablation in No Entry Left Ventricle</a></p>
+        <p class="pub-meta">European Journal of Cardio-Thoracic Surgery · Apr 2023 · Kronenberger R, Pannone L, de Asmundis C, La Meir M</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/36498514/" target="_blank" rel="noopener">Esophageal Protection and Temperature Monitoring Using the Circa S-Cath™ Temperature Probe during Epicardial Radiofrequency Ablation of the Pulmonary Veins and Posterior Left Atrium</a></p>
+        <p class="pub-meta">Nov 2022 · Kronenberger R, Parise O, Van Loo I, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://www.mdpi.com/2077-0383/10/21/4981" target="_blank" rel="noopener">Esophageal Findings in the Setting of a Novel Preventive Strategy to Avoid Thermal Lesions during Hybrid Thoracoscopic Radiofrequency Ablation for Atrial Fibrillation</a></p>
+        <p class="pub-meta">Journal of Clinical Medicine · Oct 2021 · Kronenberger R, Van Loo I, de Asmundis C, La Meir M et al.</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/34652427/" target="_blank" rel="noopener">A Novel Hybrid Technique for the Repair of an Atrioesophageal Fistula Post-Atrial Radiofrequency Ablation</a></p>
+        <p class="pub-meta">European Journal of Cardio-Thoracic Surgery · Oct 2021 · Kronenberger R, Mana F, Chierchia GB, La Meir M</p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-title"><a href="https://clinmedjournals.org/articles/cmrcr/clinical-medical-reviews-and-case-reports-cmrcr-7-323.php?jid=cmrcr" target="_blank" rel="noopener">Knowing When Not to Operate: Extravasation-Induced Necrosis in the Neonate</a></p>
+        <p class="pub-meta">Clinical Medical Reviews and Case Reports · Oct 2020 · Geeroms M, Rogge F, Kronenberger R, Casaer B et al.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FORTUNE COOKIE POPUP -->
+  <div class="fortune-overlay" id="fortuneOverlay">
+    <div class="fortune-modal">
+      <p class="fortune-nudge">you've been here a while... 🍪</p>
+      <div class="cookie-wrap" id="cookieWrap">
+        <div class="cookie" id="cookie">
+          <div class="cookie-half-left"></div>
+          <div class="cookie-half-right"></div>
+          <div class="cookie-paper" id="cookiePaper">
+            <span id="quoteText"></span>
+          </div>
+        </div>
+        <p class="cookie-hint" id="cookieHint">click to crack it open</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <a class="footer-link" href="mailto:your@email.com" title="mail">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+    <a class="footer-link" href="https://instagram.com/" target="_blank" rel="noopener" title="instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.516 2.497 5.783 2.226 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.948-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+    <a class="footer-link" href="https://linkedin.com/in/" target="_blank" rel="noopener" title="linkedin">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </footer>
 
   <script>
-    const SPARKLES = ['✦', '✧', '✩', '★', '✨', '⋆', '˚'];
+    const quotes = [
+      "You will find great success. Not today though, go hydrate.",
+      "A PhD is just a really long way to avoid getting a real job.",
+      "Someone is thinking about you right now. It's your mom. She's worried.",
+      "Your future is bright. Please stop looking directly at it.",
+      "Dropping out of residency was brave. Also extremely chaotic. Respect.",
+      "You are enough. You are also kind of a lot. Both are fine.",
+      "Great things are coming. They're stuck in traffic.",
+      "The fortune you seek is in another cookie. Sorry.",
+      "You will meet a tall, dark stranger. You will immediately overthink it.",
+      "Today is a good day to do nothing and call it self-care.",
+      "Warning: you are about to make an excellent but slightly unhinged decision.",
+    ];
 
-    function spawn() {
-      const el = document.createElement('span');
-      el.className = 'sparkle';
-      el.textContent = SPARKLES[Math.floor(Math.random() * SPARKLES.length)];
-      el.style.left = Math.random() * 100 + 'vw';
-      el.style.color = `hsl(${Math.random() * 40 + 320}, 90%, 80%)`;
-      const dur = 4 + Math.random() * 5;
-      el.style.animationDuration = dur + 's';
-      el.style.animationDelay = Math.random() * -dur + 's';
-      el.style.fontSize = (0.8 + Math.random() * 1.6) + 'rem';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), (dur + 1) * 1000);
-    }
+    setTimeout(() => {
+      const overlay = document.getElementById('fortuneOverlay');
+      overlay.classList.add('visible');
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quoteText').textContent = q;
+    }, 60000);
 
-    // initial burst
-    for (let i = 0; i < 40; i++) spawn();
-    setInterval(spawn, 300);
+    document.getElementById('cookieWrap').addEventListener('click', () => {
+      const cookie = document.getElementById('cookie');
+      if (cookie.classList.contains('cracked')) return;
+      cookie.classList.add('cracked');
+      setTimeout(() => {
+        const btn = document.createElement('p');
+        btn.className = 'fortune-close visible';
+        btn.textContent = 'close ✕';
+        btn.onclick = () => document.getElementById('fortuneOverlay').classList.remove('visible');
+        document.querySelector('.fortune-modal').appendChild(btn);
+      }, 900);
+    });
+
+    document.getElementById('fortuneOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('fortuneOverlay')) {
+        document.getElementById('fortuneOverlay').classList.remove('visible');
+      }
+    });
   </script>
+
 </body>
 </html>
