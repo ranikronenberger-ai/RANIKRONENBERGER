@@ -61,7 +61,7 @@
 
     .nav-name {
       font-size: 0.85rem;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.06em;
       text-decoration: none;
       color: #111;
@@ -142,6 +142,18 @@
       .poster-wrap { flex: 0 0 auto; height: auto; overflow: visible; }
       .poster-wrap img { height: auto; object-fit: unset; object-position: unset; }
       .text-wrap { padding: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav, .page-card nav {
+        flex-wrap: wrap;
+        gap: 0.75rem 0;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.75rem 1.2rem;
+        font-size: 0.78rem;
+      }
     }
   </style>
 </head>
