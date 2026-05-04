@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — publications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scrollbar-gutter: stable; }
+
+    body {
+      background: #f8f5ef;
+      color: #111;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.5; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 3.5rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .page-subtitle {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-top: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .pub-photo {
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      width: 32vw;
+      z-index: 0;
+    }
+
+    .pub-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      filter: brightness(1.18) url(#sharpen);
+    }
+
+    @media (max-width: 1000px) {
+      .pub-photo { display: none; }
+    }
+
+    .pub-list {
+      flex: 1;
+      max-width: 640px;
+      counter-reset: pub-counter;
+    }
+
+    /* ── removed ── */
+    .coffee-bag-wrap img {
+      display: none;
+      mix-blend-mode: multiply;
+      filter: brightness(1.8);
+    }
+
+
+    .pub-item {
+      padding: 2.2rem 0;
+      border-bottom: 1px solid #f2c4cf;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      counter-increment: pub-counter;
+    }
+
+    .pub-item:first-child {
+      border-top: 1px solid #f2c4cf;
+    }
+
+    .pub-item::before {
+      content: counter(pub-counter, decimal-leading-zero);
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: #c0909a;
+      padding-top: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .pub-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.55;
+      margin-bottom: 0.55rem;
+    }
+
+    .pub-title a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #f2a0aa;
+    }
+
+    .pub-title a:hover { opacity: 0.6; }
+
+    .pub-meta {
+      font-size: 0.8rem;
+      font-weight: 300;
+      font-style: italic;
+      color: #b07080;
+      line-height: 1.6;
+    }
+
+  
+    .page-card {
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem 3rem 3rem;
+      padding-right: calc(32vw + 3rem);
+    }
+    @media (max-width: 1000px) {
+      .page-card { padding: 2rem 2.5rem 3rem; }
+    }
+    @media (max-width: 600px) {
+      .page-card { padding: 1.5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="sharpen" color-interpolation-filters="sRGB">
+      <feConvolveMatrix order="3" kernelMatrix="0 -1 0  -1 5 -1  0 -1 0" preserveAlpha="true"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="page-card">
+  <nav>
+    <a class="nav-name" href="index.html">rani kronenberger</a>
+    <div class="nav-links">      <a href="projects.html">projects</a>
+      <a href="publications.html">publications</a>
+      <a href="values.html">values</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <h1><em>Things</em><br>I've published.</h1>
+  <p class="page-subtitle">co-authored research</p>
+
+  <div class="pub-list">
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39156516/" target="_blank" rel="noopener">A Novel Sinus Node Sparing Hybrid Ablation Approach for Inappropriate Sinus Tachycardia</a></p>
+      <p class="pub-meta">JTCVS Techniques · Apr 2024 · Kronenberger R, Pannone L, Monaco C, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://www.mdpi.com/2306-5354/12/9/924" target="_blank" rel="noopener">Impact of Disinfection and Sterilization on 3D-Printing Resin Performance for Surgical Guides in Cardiac Ablation Surgery</a></p>
+      <p class="pub-meta">Bioengineering · Aug 2025 · Kronenberger R, Kazma R, Amirabadi A et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://doi.org/10.3389/fimag.2025.1502613" target="_blank" rel="noopener">Electroanatomic Mapping Reconstruction with Photogrammetry Across Different Mapping Systems</a></p>
+      <p class="pub-meta">Frontiers in Imaging · Feb 2025 · Talevi G, Pannone L, Della Rocca DG, Kronenberger R et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2025.1538809/full" target="_blank" rel="noopener">2D Speckle-Tracking Echocardiography Assessment of Left Atrial and Left Ventricular Mechanics: Outcomes in Patients with Atrial Fibrillation Treated with Hybrid Ablation and Left Atrial Appendage Surgical Closure</a></p>
+      <p class="pub-meta">Frontiers in Bioengineering and Biotechnology · Mar 2025 · Paparella AM, Pannone L, Pedrizzetti G, Kronenberger R et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://www.ahajournals.org/doi/10.1161/CIRCEP.124.013533" target="_blank" rel="noopener">Endo-Epicardial Mapping of Human Sinus Node In-Vivo: Novel Electrophysiological Findings and Anatomical Correlations</a></p>
+      <p class="pub-meta">Circulation: Arrhythmia and Electrophysiology · Mar 2025 · Eltsov I, Pannone L, Della Rocca DG, de Asmundis C et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39608216/" target="_blank" rel="noopener">CTGAN-Driven Synthetic Data Generation: A Multidisciplinary, Expert-Guided Approach (TIMA)</a></p>
+      <p class="pub-meta">Computer Methods and Programs in Biomedicine · Nov 2024 · Parise O, Kronenberger R, Parise G, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://www.mdpi.com/2227-9059/12/4/869" target="_blank" rel="noopener">Advancing Surgical Arrhythmia Ablation: Novel Insights on 3D Printing Applications and Two Biocompatible Materials</a></p>
+      <p class="pub-meta">Biomedicines · Apr 2024 · Monaco C, Kronenberger R, Talevi G, de Asmundis C et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38545325/" target="_blank" rel="noopener">Pericarditis Prophylactic Therapy after Sinus Node Sparing Hybrid Ablation for Inappropriate Sinus Tachycardia / Postural Orthostatic Sinus Tachycardia</a></p>
+      <p class="pub-meta">Heart Rhythm O2 · Feb 2024 · de Asmundis C, Marcon L, Pannone L, Kronenberger R, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38155611/" target="_blank" rel="noopener">Redo Procedures after Sinus Node Sparing Hybrid Ablation for Inappropriate Sinus Tachycardia / Postural Orthostatic Sinus Tachycardia</a></p>
+      <p class="pub-meta">EP Europace · Dec 2023 · de Asmundis C, Marcon L, Pannone L, Kronenberger R, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38064697/" target="_blank" rel="noopener">Coronary Artery Disease in Atrial Fibrillation Ablation: Impact on Arrhythmic Outcomes</a></p>
+      <p class="pub-meta">EP Europace · Dec 2023 · Cappello IA, Pannone L, Della Rocca DG, de Asmundis C et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41214678/" target="_blank" rel="noopener">Development of a Patient-Specific Epicardial Guide for Ventricular Tachycardia Ablation Surgery Using High-Consistency Rubber Silicone Molding</a></p>
+      <p class="pub-meta">Biomedical Engineering Online · Nov 2025 · Kronenberger R, Candelari M, Cappello IA et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/37756702/" target="_blank" rel="noopener">3D Mapping Challenges in Hybrid Video-Assisted Thoracoscopic Surgical Ablation of Brugada Syndrome</a></p>
+      <p class="pub-meta">Interdisciplinary CardioVascular and Thoracic Surgery · Sep 2023 · Eltsov I, Pannone L, Ramak R, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title">Excision of Atrial Myxoma Through a Totally Thoracoscopic Approach on the Fibrillating Heart</p>
+      <p class="pub-meta">Jun 2023 · Kronenberger R, Bentala M, Devos A, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/37246904/" target="_blank" rel="noopener">Hybrid Atrial Fibrillation Ablation: Long-Term Outcomes from a Single-Centre 10-Year Experience</a></p>
+      <p class="pub-meta">EP Europace · May 2023 · Pannone L, Mouram S, Della Rocca DG, de Asmundis C et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://link.springer.com/article/10.1186/s13019-023-02193-6" target="_blank" rel="noopener">Stiff Left Atrial Syndrome with Pulmonary Veins Occlusion after Percutaneous Radiofrequency Ablation: A Life-Long Complication that Can Lead to Heart Transplantation</a></p>
+      <p class="pub-meta">Journal of Cardiothoracic Surgery · May 2023 · Kronenberger R, Tanaka K, de Asmundis C, La Meir M</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://academic.oup.com/ejcts/article/63/4/ezad140/7143382" target="_blank" rel="noopener">Epicardial Open Chest Ventricular Tachycardia Ablation in No Entry Left Ventricle</a></p>
+      <p class="pub-meta">European Journal of Cardio-Thoracic Surgery · Apr 2023 · Kronenberger R, Pannone L, de Asmundis C, La Meir M</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/36498514/" target="_blank" rel="noopener">Esophageal Protection and Temperature Monitoring Using the Circa S-Cath™ Temperature Probe during Epicardial Radiofrequency Ablation of the Pulmonary Veins and Posterior Left Atrium</a></p>
+      <p class="pub-meta">Nov 2022 · Kronenberger R, Parise O, Van Loo I, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://www.mdpi.com/2077-0383/10/21/4981" target="_blank" rel="noopener">Esophageal Findings in the Setting of a Novel Preventive Strategy to Avoid Thermal Lesions during Hybrid Thoracoscopic Radiofrequency Ablation for Atrial Fibrillation</a></p>
+      <p class="pub-meta">Journal of Clinical Medicine · Oct 2021 · Kronenberger R, Van Loo I, de Asmundis C, La Meir M et al.</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://pubmed.ncbi.nlm.nih.gov/34652427/" target="_blank" rel="noopener">A Novel Hybrid Technique for the Repair of an Atrioesophageal Fistula Post-Atrial Radiofrequency Ablation</a></p>
+      <p class="pub-meta">European Journal of Cardio-Thoracic Surgery · Oct 2021 · Kronenberger R, Mana F, Chierchia GB, La Meir M</p>
+    </div></div>
+
+    <div class="pub-item"><div class="pub-body">
+      <p class="pub-title"><a href="https://clinmedjournals.org/articles/cmrcr/clinical-medical-reviews-and-case-reports-cmrcr-7-323.php?jid=cmrcr" target="_blank" rel="noopener">Knowing When Not to Operate: Extravasation-Induced Necrosis in the Neonate</a></p>
+      <p class="pub-meta">Clinical Medical Reviews and Case Reports · Oct 2020 · Geeroms M, Rogge F, Kronenberger R, Casaer B et al.</p>
+    </div></div>
+
+  </div><!-- end pub-list -->
+
+  <div class="pub-photo">
+    <img src="surgery.png" alt="in the OR">
+  </div>
+
+
+</div><!-- end page-card -->
+</body>
+</html>

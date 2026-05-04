@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — values</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scrollbar-gutter: stable; min-height: 100vh; }
+    body { min-height: 100vh; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #fff;
+    }
+
+    /* ── PHOTO BACKGROUND ── */
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: grayscale(1) contrast(0.9) brightness(0.9);
+      transform: scaleX(-1);
+      z-index: 0;
+    }
+
+    /* ── CONTENT ── */
+    .page-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem 3rem 4rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4rem;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.4; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 3.5rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .page-subtitle {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .values-list {
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .value-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .value-item:first-child {
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .value-num {
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      padding-top: 0.2rem;
+      letter-spacing: 0.06em;
+    }
+
+    .value-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+
+    @media (max-width: 960px) {
+      .page-card { padding: 1.75rem 2rem 3rem; }
+    }
+
+    @media (max-width: 600px) {
+      .page-card { padding: 1.5rem; }
+      h1 { font-size: clamp(3.2rem, 10vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <img class="bg-photo" src="rani-movement.png" alt="">
+
+  <div class="page-card">
+
+    <nav>
+      <a class="nav-name" href="index.html">rani kronenberger</a>
+      <div class="nav-links">
+        <a href="projects.html">projects</a>
+        <a href="publications.html">publications</a>
+        <a href="values.html">values</a>
+        <a href="contact.html">contact</a>
+      </div>
+    </nav>
+
+    <h1><em>Core</em><br>values.</h1>
+    <p class="page-subtitle">what I live by</p>
+
+    <div class="values-list">
+      <div class="value-item">
+        <span class="value-num">01</span>
+        <p class="value-quote">Time is your most valuable currency. Spend it wisely.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">02</span>
+        <p class="value-quote">Create, don't just consume.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">03</span>
+        <p class="value-quote">Pivot quickly and fail forward.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">04</span>
+        <p class="value-quote">Joy is an act of resistance. the world is not designed for you to feel it — so be fiercely, deliberately, unapologetically joyful.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">05</span>
+        <p class="value-quote">Stay authentic to who you truly are. Authenticity is infectious too — it inspires people to dare to be themselves.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">06</span>
+        <p class="value-quote">Go quick and scrappy and iterate from there. Never work on something in isolation.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">07</span>
+        <p class="value-quote">Less talking, more listening.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">08</span>
+        <p class="value-quote">In a world optimised for speed and performance, empathy is the most radical thing you can lead with. stay human.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">09</span>
+        <p class="value-quote">"A well characterized need is the DNA of a great invention." — Josh Makower</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">11</span>
+        <p class="value-quote">Stubbornness will kill connections, possibilities and your own happiness. Be agile and flexible — in life, with yourself and with others.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">12</span>
+        <p class="value-quote">Comparison is where dreams go to die. Everyone has their own timeline. You do you.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-num">13</span>
+        <p class="value-quote">Be kind and pay it forward. Something as simple as a smile could shift someone's day.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

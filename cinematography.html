@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — big sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      min-height: 100vh;
+      background: #f8f5ef;
+      font-family: 'DM Sans', sans-serif;
+      color: #fff;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 2rem 3rem 0;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.4; }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      padding: 3rem 3rem 0;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 2rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .page-subtitle {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-top: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── VIDEO ── */
+    .video-wrap {
+      padding: 0 3rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* grain overlay */
+    .film-frame {
+      position: relative;
+      width: min(72vw, 860px);
+    }
+
+    .film-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      border-radius: 2px;
+    }
+
+    /* warm amber glow behind the video */
+    .film-glow {
+      position: absolute;
+      inset: -18px;
+      background: radial-gradient(ellipse at 50% 60%, rgba(210,140,60,0.45) 0%, rgba(180,90,30,0.2) 45%, transparent 72%);
+      filter: blur(22px);
+      z-index: -1;
+      border-radius: 12px;
+    }
+
+    .film-video {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      filter: sepia(0.38) saturate(1.55) contrast(1.08) brightness(1.12) hue-rotate(-14deg);
+    }
+
+    .video-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding-top: 0.75rem;
+      width: min(72vw, 860px);
+    }
+
+    .video-caption-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .back-link {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: rgba(0,0,0,0.4);
+      text-decoration: none;
+    }
+
+    .back-link:hover { opacity: 0.4; }
+
+    @media (max-width: 960px) {
+      nav { padding: 1.5rem 2rem 0; }
+      .page-title { padding: 2rem 2rem 0; }
+      .video-wrap { padding: 0 2rem 2.5rem; }
+      .film-frame { width: min(90vw, 860px); }
+      .video-caption { width: min(90vw, 860px); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.5rem 1.5rem 0; }
+      .page-title { padding: 1.5rem 1.5rem 0; }
+      .video-wrap { padding: 0 1.5rem 2.5rem; }
+      h1 { font-size: clamp(3rem, 11vw, 5rem); }
+      .film-frame, .video-caption { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">rani kronenberger</a>
+    <div class="nav-links">
+      <a href="projects.html">projects</a>
+      <a href="publications.html">publications</a>
+      <a href="values.html">values</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <div class="page-title">
+    <h1><em>Big</em><br>Sur.</h1>
+    <p class="page-subtitle">footage from a longer film</p>
+  </div>
+
+  <div class="video-wrap">
+    <div class="film-frame">
+      <div class="film-glow"></div>
+      <video class="film-video" src="big-sur.mp4" autoplay muted playsinline loop controls preload="auto"></video>
+    </div>
+    <div class="video-caption">
+      <span class="video-caption-text">shot & edited on the california coast, 2026</span>
+      <a class="back-link" href="projects.html">← back to projects</a>
+    </div>
+  </div>
+
+</body>
+</html>

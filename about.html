@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — who am i</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f8f5ef;
+      color: #111;
+      font-family: 'DM Sans', sans-serif;
+      padding: 3rem 4rem;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 960px) {
+      body { padding: 2rem 2.5rem; }
+      .bottom-row { gap: 3rem; flex-wrap: wrap; }
+      .tl-item { grid-template-columns: 50% 2.5rem 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.5rem; }
+      .timeline::before { left: 100%; display: none; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .tl-node { display: none; }
+      .tl-date { padding-left: 0; font-size: 1.2rem; }
+      .tl-text { text-align: left; padding-right: 0; }
+      .bottom-row { flex-direction: column; gap: 2rem; }
+      .touch-col { text-align: left; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4rem;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-links { display: flex; gap: 2rem; align-items: baseline; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.4; }
+
+    .resume-btn {
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #c0909a;
+      text-decoration: none;
+      border: 1px solid #f2c4cf;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+    }
+
+    .resume-btn:hover { opacity: 0.6; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ESSAY ── */
+    .essay {
+      max-width: 680px;
+      margin-bottom: 5rem;
+    }
+
+    .essay p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: #444;
+    }
+
+    .essay p + p { margin-top: 1.2rem; }
+
+    .essay em {
+      font-style: italic;
+      color: #c0909a;
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 1.05em;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      margin-bottom: 6rem;
+      position: relative;
+    }
+
+    .timeline-label {
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c0909a;
+      margin-bottom: 3rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 0;
+    }
+
+    /* vertical line at 55% */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 55%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: #f2c4cf;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 55% 3rem 1fr;
+      margin-bottom: 3.5rem;
+      align-items: flex-start;
+    }
+
+    .tl-text {
+      padding-right: 2.5rem;
+      text-align: right;
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    .tl-node {
+      display: flex;
+      justify-content: center;
+      padding-top: 0.35rem;
+      position: relative;
+    }
+
+    .tl-node::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #c0909a;
+      flex-shrink: 0;
+    }
+
+    .tl-date {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #c0909a;
+      padding-left: 1rem;
+      line-height: 1;
+    }
+
+    /* ── BOTTOM ROW ── */
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6rem;
+      padding-top: 4rem;
+      border-top: 1px solid #f2c4cf;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c0909a;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-col {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .about-col p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 2;
+      color: #555;
+    }
+
+    .about-col p + p { margin-top: 1rem; }
+
+    .touch-col {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .touch-col a {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #f2a0aa;
+      padding-bottom: 2px;
+    }
+
+    .touch-col a:hover { opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">rani kronenberger</a>
+    <div class="nav-links">
+      <a href="about.html">who am i</a>
+      <a href="projects.html">projects</a>
+      <a href="publications.html">publications</a>
+      <a href="values.html">values</a>
+      <a href="contact.html">contact</a>
+      <a class="resume-btn" href="resume.pdf" download>resume ↓</a>
+    </div>
+  </nav>
+
+  <h1>who am i</h1>
+
+  <!-- Essay -->
+  <div class="essay">
+    <p>I've always lived in the <em>and</em>.</p>
+    <p>I think the most interesting people are the ones who resist the pressure to be one thing. Not because they're scattered — but because they understand that opposites don't cancel each other out. They <em>compound</em>. The contradiction is the point.</p>
+    <p>I write love stories. I study arrhythmias. I build startups. I also break things — sometimes deliberately, sometimes on a mountain. Both are data.</p>
+    <p>I don't think I'll ever be just one thing. I've stopped trying to be.</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <p class="timeline-label">the long version</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-text">Some traumatic life events land me in an 8-month hospitalization. I miss a full year of school — one I never retook, which left real gaps I had to paper over for years. The most depressing year of my existence. I nearly lose my life and am genuinely unsure what it's all for. I am furious at the medical system and the incapabilities I watched up close — which forced me to take care of myself at 13. In one word: <em>rage</em>. Despite every odd stacked against me, I make it out. Rock bottom had a basement. My iron resilience and my family pulled me through. I never looked back.</div>
+        <div class="tl-node"></div>
+        <div class="tl-date">2012</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-text">I feel a strange pull toward cardiac surgery and decide that's it. To get there I need to pass a brutal national entrance exam with a ruthlessly low acceptance rate. The odds aren't great — my concentration and cognitive stamina are still recovering, I missed so much school, support is thin outside family. I decide: I want it, I'll get it. I fail in ways I didn't know a person could fail. I keep going. <em>De aanhouder wint.</em></div>
+        <div class="tl-node"></div>
+        <div class="tl-date">2014</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-text">I graduate Medical School and enter the Surgical Residency Program. A long time coming.</div>
+        <div class="tl-node"></div>
+        <div class="tl-date">2021–22</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-text">I get into the MIT Venture Advancement Program in Cambridge. For the first time I'm fully inside an entrepreneurial ecosystem — MIT, Harvard, people who build things from scratch. It lights something up. My love for creating and solving finds a name.</div>
+        <div class="tl-node"></div>
+        <div class="tl-date">2023</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-text">I take a leap and apply to the Stanford Biodesign and Harvard fellowships in healthtech innovation. I prep ferociously — deep into imposter syndrome. Then I meet Gael, from a pitch comp, and she quietly changes my life. She helps me see I'm neurodivergent and that my authenticity isn't a weakness — it's my sharpest edge. I close my books. I decide to wing it. I'm in love with Stanford but apply to Harvard too, fully prepared to not get in. I get into both. A win after a long streak of failures — and the one that mattered most.</div>
+        <div class="tl-node"></div>
+        <div class="tl-date">2024</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="bottom-row">
+    <div class="about-col">
+      <p class="section-label">about me</p>
+      <p>Rani is a Belgian MD, PhD candidate, former surgery resident, and Stanford Biodesign Fellow.</p>
+      <p>She graduated magna cum laude from VUB, where she joined Brugada's heart lab to study complications in arrhythmia ablation and investigate prevention strategies. She has co-authored over 20 peer-reviewed publications, first-authored two novel surgical techniques, and presented her work internationally.</p>
+      <p>Her PhD research focuses on finding eligible 3D printing materials for patient-tailored epicardial guides in hybrid arrhythmia ablation. She is currently an Innovation Fellow at Stanford Biodesign, focused on need-driven healthcare innovation.</p>
+    </div>
+    <div class="touch-col">
+      <p class="section-label">get in touch</p>
+      <a href="contact.html">say hello →</a>
+    </div>
+  </div>
+
+</body>
+</html>

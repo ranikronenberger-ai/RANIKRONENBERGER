@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scrollbar-gutter: stable; }
+
+    html, body {
+      height: 100%;
+      background: #f8f5ef;
+      font-family: 'DM Sans', sans-serif;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 2rem 3rem 0;
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.4; }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      padding: 3rem 3rem 0;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 2.5rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .page-subtitle {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-top: 0.6rem;
+    }
+
+    /* ── MAIN: screensaver canvas ── */
+    .main {
+      flex: 1;
+      position: relative;
+      min-height: 380px;
+      overflow: visible;
+    }
+
+    /* ── FOLDERS: scattered across screen ── */
+    .folders-grid {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* ── FOLDER ── */
+    .folder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      position: absolute;
+      width: 150px;
+    }
+
+    /* screensaver positions */
+    .folder:nth-child(1) { left: 5%;  top: 18%; }
+    .folder:nth-child(2) { left: 63%; top: 8%;  }
+    .folder:nth-child(3) { left: 24%; top: 57%; }
+    .folder:nth-child(4) { left: 71%; top: 53%; }
+    .folder:nth-child(5) { left: 40%; top: 24%; }
+
+    .folder-icon {
+      position: relative;
+      width: 130px;
+      height: 93px;
+    }
+
+    .folder:hover .folder-icon { transform: translateY(-4px) scale(1.06); }
+    .folder:hover { z-index: 10; }
+
+    .folder-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 3px 8px 8px 8px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.32);
+    }
+
+    .folder-back::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 34px;
+      height: 11px;
+      border-radius: 4px 9px 0 0;
+    }
+
+    .folder-front {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 58px;
+      border-radius: 3px 3px 8px 8px;
+      z-index: 3;
+    }
+
+    /* ── FOLDER 1: croc leather (un/hinged) ── */
+    .folder:nth-child(1) .folder-back { background: url('folder-unhinged.png') center/200% no-repeat; background-color: #1a2840; overflow: hidden; }
+    .folder:nth-child(1) .folder-back::before { background: #1a2840; }
+    .folder:nth-child(1) .folder-front { background: url('folder-unhinged.png') center/200% no-repeat; background-color: #1a2840; }
+
+    /* ── FOLDER 2: silver sequin ── */
+    .folder:nth-child(2) .folder-back { background: url('folder-melancholic.png') center/cover no-repeat; background-color: #a8b8b0; }
+    .folder:nth-child(2) .folder-back::before { background: #708878; }
+    .folder:nth-child(2) .folder-front { background: url('folder-melancholic.png') center/cover no-repeat; background-color: #a8b8b0; }
+
+    /* ── FOLDER 3: navy seersucker ── */
+    .folder:nth-child(3) .folder-back { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); }
+    .folder:nth-child(3) .folder-back::before { background: #1e3870; }
+    .folder:nth-child(3) .folder-front { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); opacity: 0.75; }
+
+    /* ── FOLDER 4: gold sequin ── */
+    .folder:nth-child(4) .folder-back { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
+    .folder:nth-child(4) .folder-back::before { background: #7a5e1c; }
+    .folder:nth-child(4) .folder-front { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
+
+    /* ── FOLDER 5: film strip (cinematography) ── */
+    .folder:nth-child(5) .folder-back { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); }
+    .folder:nth-child(5) .folder-back::before { background: #0d0d0d; }
+    .folder:nth-child(5) .folder-front { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); opacity: 0.85; }
+
+    /* ── PEEKING PAPERS ── */
+    .peek-paper {
+      position: absolute;
+      z-index: 2;
+      width: 18px;
+      height: 48px;
+      border-radius: 2px 2px 0 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 2px;
+      font-size: 0.65rem;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      pointer-events: none;
+    }
+
+    .folder-name {
+      margin-top: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: #111;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .folder-tag {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: #c0909a;
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-top: 0.2rem;
+    }
+
+    /* ── HOVER CARD ── */
+    .hover-card {
+      display: none;
+      position: fixed;
+      width: 320px;
+      background: #fff;
+      border: 1px solid #f2c4cf;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .hover-card-photo {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hover-card-photo-placeholder {
+      width: 100%;
+      height: 120px;
+      background: #fce4ec;
+    }
+
+    .hover-card-body { padding: 0.75rem 0.9rem; }
+
+    .hover-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #111;
+      margin-bottom: 0.25rem;
+    }
+
+    .hover-card-desc {
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── TABLET + MOBILE ── */
+    @media (max-width: 960px) {
+      html, body { height: auto; }
+      .main { position: static; display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3rem; padding: 2.5rem 2rem 4rem; min-height: 0; }
+      .folders-grid { position: static; display: contents; }
+      .folder { position: static; width: 140px; }
+      .page-title { padding: 2rem 2rem 0; }
+      nav { padding: 1.5rem 2rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .folder { width: 120px; }
+      .main { gap: 2rem 2rem; padding: 2rem 1.5rem 3rem; }
+      .page-title { padding: 1.5rem 1.5rem 0; }
+      nav { padding: 1.5rem 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">rani kronenberger</a>
+    <div class="nav-links">
+      <a href="projects.html">projects</a>
+      <a href="publications.html">publications</a>
+      <a href="values.html">values</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <div class="page-title">
+    <h1><em>Things</em><br>I'm making.</h1>
+    <p class="page-subtitle">passions &amp; projects</p>
+  </div>
+
+  <div class="main">
+    <div class="folders-grid">
+
+        <div class="folder">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="peek-paper" style="top:-16px;left:6px;transform:rotate(-11deg);background:#f5f0e8;background-image:repeating-linear-gradient(transparent,transparent 8px,#ddd8cc 8px,#ddd8cc 9px);">🔗</div>
+            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(6deg);background:#fde8f0;background-image:repeating-linear-gradient(transparent,transparent 8px,#e8c8d4 8px,#e8c8d4 9px);">♀️</div>
+            <div class="peek-paper" style="top:-18px;left:32px;transform:rotate(-4deg);background:#f0f0e8;background-image:repeating-linear-gradient(transparent,transparent 8px,#d8d8c8 8px,#d8d8c8 9px);">✨</div>
+            <div class="folder-front"></div>
+          </div>
+          <span class="folder-name">un/hinged</span>
+          <span class="folder-tag">in progress</span>
+          <div class="hover-card">
+            <img class="hover-card-photo" src="unhinged-poster.png" alt="un/hinged" style="object-position:center top;">
+            <div class="hover-card-body">
+              <p class="hover-card-title">un/hinged</p>
+              <p class="hover-card-desc">A space for women to step outside the roles written for them.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" onclick="window.location='functional-melancholic.html'">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(9deg);background:#f5f0e0;background-image:repeating-linear-gradient(transparent,transparent 8px,#d8d0b8 8px,#d8d0b8 9px);">🌹</div>
+            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(-7deg);background:#faeae8;background-image:repeating-linear-gradient(transparent,transparent 8px,#e4ccc8 8px,#e4ccc8 9px);">🫀</div>
+            <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(4deg);background:#f8f0e8;background-image:repeating-linear-gradient(transparent,transparent 8px,#ddd4c4 8px,#ddd4c4 9px);">💌</div>
+            <div class="folder-front"></div>
+          </div>
+          <span class="folder-name">the functional melancholic</span>
+          <span class="folder-tag">in progress</span>
+        </div>
+
+        <div class="folder">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(-8deg);background:#eef2f8;background-image:repeating-linear-gradient(transparent,transparent 8px,#c8d4e8 8px,#c8d4e8 9px);">📖</div>
+            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(7deg);background:#f0ede6;background-image:repeating-linear-gradient(transparent,transparent 8px,#d4d0c4 8px,#d4d0c4 9px);">♟️</div>
+            <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(-3deg);background:#e8eef8;background-image:repeating-linear-gradient(transparent,transparent 8px,#c4cedc 8px,#c4cedc 9px);">🃏</div>
+            <div class="folder-front"></div>
+          </div>
+          <span class="folder-name">games with strangers</span>
+          <span class="folder-tag">book in progress</span>
+          <div class="hover-card">
+            <img class="hover-card-photo" src="aba5fdb5f788091750cf297b5ee73c08.jpg" alt="games with strangers" style="object-position:center center;">
+            <div class="hover-card-body">
+              <p class="hover-card-title">games with strangers</p>
+              <p class="hover-card-desc">A book following Desiré and Jamie — two people who keep slipping back into each other's orbit.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(10deg);background:#f8e8e8;background-image:repeating-linear-gradient(transparent,transparent 8px,#e4c8c8 8px,#e4c8c8 9px);">🏂</div>
+            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(-6deg);background:#f0e8f0;background-image:repeating-linear-gradient(transparent,transparent 8px,#d8c8d8 8px,#d8c8d8 9px);">❄️</div>
+            <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(4deg);background:#e8eef8;background-image:repeating-linear-gradient(transparent,transparent 8px,#c8d0e0 8px,#c8d0e0 9px);">🏔️</div>
+            <div class="folder-front"></div>
+          </div>
+          <span class="folder-name">(freestyle) snowboarding</span>
+          <span class="folder-tag">passion</span>
+          <div class="hover-card">
+            <img class="hover-card-photo" src="snowboard.png" alt="snowboarding" style="height:200px;object-fit:cover;object-position:center 18%;filter:brightness(1.08) contrast(1.15) saturate(0.75) hue-rotate(15deg);">
+            <div class="hover-card-body">
+              <p class="hover-card-title">(freestyle) snowboarding</p>
+              <p class="hover-card-desc">my happy place.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" id="folder-cinema">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(-9deg);background:#111;background-image:repeating-linear-gradient(transparent,transparent 8px,#333 8px,#333 9px);">🎞️</div>
+            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(6deg);background:#222;background-image:repeating-linear-gradient(transparent,transparent 8px,#444 8px,#444 9px);">🎬</div>
+            <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(-3deg);background:#1a1a1a;background-image:repeating-linear-gradient(transparent,transparent 8px,#383838 8px,#383838 9px);">🌊</div>
+            <div class="folder-front"></div>
+          </div>
+          <span class="folder-name">cinematography</span>
+          <span class="folder-tag">passion</span>
+          <div class="hover-card">
+            <video class="hover-card-video" src="big-sur.mp4" loop playsinline preload="auto" style="width:100%;height:auto;display:block;"></video>
+            <div class="hover-card-body">
+              <p class="hover-card-title">big sur</p>
+              <p class="hover-card-desc">shot & edited on the california coast.</p>
+            </div>
+          </div>
+        </div>
+
+    </div><!-- end folders-grid -->
+  </div><!-- end main -->
+
+  <script>
+    document.querySelectorAll('.folder').forEach(folder => {
+      const card = folder.querySelector('.hover-card');
+      if (!card) return;
+
+      folder.addEventListener('mouseenter', () => {
+        const r = folder.getBoundingClientRect();
+        card.style.display = 'block';
+        const below = window.innerHeight - r.bottom;
+        if (below > 240) {
+          card.style.top = (r.bottom + 10) + 'px';
+          card.style.bottom = 'auto';
+        } else {
+          card.style.top = 'auto';
+          card.style.bottom = (window.innerHeight - r.top + 10) + 'px';
+        }
+        let left = r.left + r.width / 2 - 160;
+        card.style.left = Math.max(8, Math.min(left, window.innerWidth - 328)) + 'px';
+      });
+
+      folder.addEventListener('mouseleave', () => { card.style.display = 'none'; });
+    });
+
+    const cinemaFolder = document.getElementById('folder-cinema');
+    const cinemaVideo = cinemaFolder.querySelector('.hover-card-video');
+    cinemaFolder.addEventListener('mouseenter', () => cinemaVideo.play());
+    cinemaFolder.addEventListener('mouseleave', () => { cinemaVideo.pause(); cinemaVideo.currentTime = 0; });
+  </script>
+
+</body>
+</html>

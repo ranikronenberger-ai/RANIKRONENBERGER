@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rani kronenberger — the functional melancholic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      color: #111;
+    }
+
+    body {
+      background: #fff;
+      display: flex;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .page-card {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* ── LEFT: full image ── */
+    .project-image {
+      flex: 0 0 52%;
+      position: relative;
+    }
+
+    .project-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ── RIGHT: nav + text ── */
+    .project-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 3.5rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .nav-name {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { opacity: 0.4; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .project-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .project-text p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.9;
+    }
+
+    .project-btn {
+      display: inline-block;
+      width: fit-content;
+      padding: 0.75rem 2rem;
+      background: #111;
+      color: #fde8f0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border-radius: 999px;
+    }
+
+    .project-btn:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      body { padding: 0.5rem; }
+      .page-card { flex-direction: column; }
+      .project-image { flex: 0 0 auto; height: 60vw; position: relative; }
+      .project-image img { position: absolute; }
+      .project-content { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-card">
+
+  <div class="project-image">
+    <img src="functional-melancholic-hero.png" alt="the functional melancholic">
+  </div>
+
+  <div class="project-content">
+    <nav>
+      <a class="nav-name" href="index.html">rani kronenberger</a>
+      <div class="nav-links">
+        <a href="projects.html">projects</a>
+        <a href="publications.html">publications</a>
+        <a href="values.html">values</a>
+        <a href="contact.html">contact</a>
+      </div>
+    </nav>
+
+    <div class="project-text">
+      <h1><em>The Functional</em><br>Melancholic.</h1>
+      <p>A digital museum of love — for what lingers, what didn't last, what still matters. A place to leave art, words, fragments… or just a trace of someone.</p>
+<a class="project-btn" href="https://melancholic.dev" target="_blank" rel="noopener">enter the museum</a>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
