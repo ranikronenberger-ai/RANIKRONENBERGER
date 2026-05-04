@@ -7,6 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'BulgaryRose';
+      src: url('BulgaryRose-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html { scrollbar-gutter: stable; min-height: 100vh; }
@@ -52,11 +59,12 @@
     }
 
     .nav-name {
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
+      font-family: 'BulgaryRose', serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+      font-weight: normal;
+      color: #5a1422;
       text-decoration: none;
-      color: rgba(255,255,255,0.8);
     }
 
     .nav-links { display: flex; gap: 2rem; }
