@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rani kronenberger — projects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'BulgaryRose';
@@ -21,7 +21,7 @@
     html, body {
       height: 100%;
       background: #f8f5ef;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Figtree', sans-serif;
       color: #111;
       display: flex;
       flex-direction: column;
@@ -64,7 +64,7 @@
     }
 
     h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: 'Figtree', sans-serif;
       font-size: clamp(3.5rem, 7vw, 7rem);
       font-weight: 300;
       line-height: 0.95;
@@ -109,11 +109,10 @@
     }
 
     /* screensaver positions */
-    .folder:nth-child(1) { left: 5%;  top: 18%; }
-    .folder:nth-child(2) { left: 63%; top: 8%;  }
-    .folder:nth-child(3) { left: 24%; top: 57%; }
-    .folder:nth-child(4) { left: 71%; top: 53%; }
-    .folder:nth-child(5) { left: 40%; top: 24%; }
+    .folder:nth-child(1) { left: 6%;  top: 22%; }
+    .folder:nth-child(2) { left: 29%; top: 56%; }
+    .folder:nth-child(3) { left: 76%; top: 50%; }
+    .folder:nth-child(4) { left: 53%; top: 18%; }
 
     .folder-icon {
       position: relative;
@@ -157,24 +156,21 @@
     .folder:nth-child(1) .folder-front { background: url('folder-unhinged.png') center/200% no-repeat; background-color: #1a2840; }
 
     /* ── FOLDER 2: silver sequin ── */
-    .folder:nth-child(2) .folder-back { background: url('folder-melancholic.png') center/cover no-repeat; background-color: #a8b8b0; }
-    .folder:nth-child(2) .folder-back::before { background: #708878; }
-    .folder:nth-child(2) .folder-front { background: url('folder-melancholic.png') center/cover no-repeat; background-color: #a8b8b0; }
 
     /* ── FOLDER 3: navy seersucker ── */
-    .folder:nth-child(3) .folder-back { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); }
-    .folder:nth-child(3) .folder-back::before { background: #1e3870; }
-    .folder:nth-child(3) .folder-front { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); opacity: 0.75; }
+    .folder:nth-child(2) .folder-back { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); }
+    .folder:nth-child(2) .folder-back::before { background: #1e3870; }
+    .folder:nth-child(2) .folder-front { background: repeating-linear-gradient(90deg, #2b4a8c 0px, #2b4a8c 5px, #f0ede6 5px, #f0ede6 11px); opacity: 0.75; }
 
     /* ── FOLDER 4: gold sequin ── */
-    .folder:nth-child(4) .folder-back { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
-    .folder:nth-child(4) .folder-back::before { background: #7a5e1c; }
-    .folder:nth-child(4) .folder-front { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
+    .folder:nth-child(3) .folder-back { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
+    .folder:nth-child(3) .folder-back::before { background: #7a5e1c; }
+    .folder:nth-child(3) .folder-front { background: url('folder-snowboard.png') center/180% no-repeat; background-color: #c4a040; }
 
     /* ── FOLDER 5: film strip (cinematography) ── */
-    .folder:nth-child(5) .folder-back { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); }
-    .folder:nth-child(5) .folder-back::before { background: #0d0d0d; }
-    .folder:nth-child(5) .folder-front { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); opacity: 0.85; }
+    .folder:nth-child(4) .folder-back { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); }
+    .folder:nth-child(4) .folder-back::before { background: #0d0d0d; }
+    .folder:nth-child(4) .folder-front { background: repeating-linear-gradient(90deg, #0d0d0d 0px, #0d0d0d 4px, #1f1f1f 4px, #1f1f1f 18px); opacity: 0.85; }
 
     /* ── PEEKING PAPERS ── */
     .peek-paper {
@@ -238,7 +234,7 @@
     .hover-card-body { padding: 0.75rem 0.9rem; }
 
     .hover-card-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: 'Figtree', sans-serif;
       font-size: 0.95rem;
       font-weight: 300;
       color: #111;
@@ -312,25 +308,6 @@
         <div class="folder">
           <div class="folder-icon">
             <div class="folder-back"></div>
-            <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(9deg);background:#f5f0e0;background-image:repeating-linear-gradient(transparent,transparent 8px,#d8d0b8 8px,#d8d0b8 9px);">🌹</div>
-            <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(-7deg);background:#faeae8;background-image:repeating-linear-gradient(transparent,transparent 8px,#e4ccc8 8px,#e4ccc8 9px);">🫀</div>
-            <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(4deg);background:#f8f0e8;background-image:repeating-linear-gradient(transparent,transparent 8px,#ddd4c4 8px,#ddd4c4 9px);">💌</div>
-            <div class="folder-front"></div>
-          </div>
-          <span class="folder-name">the functional melancholic</span>
-          <span class="folder-tag">in progress</span>
-          <div class="hover-card">
-            <img class="hover-card-photo" src="functional-melancholic-hero.png" alt="the functional melancholic" style="object-position:center top;">
-            <div class="hover-card-body">
-              <p class="hover-card-title">the functional melancholic</p>
-              <p class="hover-card-desc">a museum of love. for those who feel everything and keep going anyway.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="folder">
-          <div class="folder-icon">
-            <div class="folder-back"></div>
             <div class="peek-paper" style="top:-16px;left:5px;transform:rotate(-8deg);background:#eef2f8;background-image:repeating-linear-gradient(transparent,transparent 8px,#c8d4e8 8px,#c8d4e8 9px);">📖</div>
             <div class="peek-paper" style="top:-13px;left:19px;transform:rotate(7deg);background:#f0ede6;background-image:repeating-linear-gradient(transparent,transparent 8px,#d4d0c4 8px,#d4d0c4 9px);">♟️</div>
             <div class="peek-paper" style="top:-18px;left:33px;transform:rotate(-3deg);background:#e8eef8;background-image:repeating-linear-gradient(transparent,transparent 8px,#c4cedc 8px,#c4cedc 9px);">🃏</div>
@@ -342,7 +319,7 @@
             <img class="hover-card-photo" src="aba5fdb5f788091750cf297b5ee73c08.jpg" alt="games with strangers" style="object-position:center center;">
             <div class="hover-card-body">
               <p class="hover-card-title">games with strangers</p>
-              <p class="hover-card-desc">A book following Desiré and Jamie — two people who keep slipping back into each other's orbit.</p>
+              <p class="hover-card-desc">A contemporary fiction novel following Desiré and Jamie — two people who keep slipping back into each other's orbit.</p>
             </div>
           </div>
         </div>
