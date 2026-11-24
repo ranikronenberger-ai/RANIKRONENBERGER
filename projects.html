@@ -75,11 +75,49 @@
 
     h1 em { font-style: italic; }
 
-    [hidden] { display: none !important; }
-    .construction { padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 0; }
-    .construction h1 { font-family: 'Cormorant Garamond', Georgia, serif; }
-    .construction .emoji { font-size: 1.6rem; vertical-align: middle; }
-    .construction p { font-size: 1.05rem; font-weight: 300; color: #6b1a2a; }
+    .uc {
+      display: inline-block;
+      margin-top: 1.2rem;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fde8f0;
+      box-shadow: 0 2px 10px rgba(107, 26, 42, 0.08);
+    }
+    .uc-tape {
+      height: 7px;
+      background: repeating-linear-gradient(-45deg, #6b1a2a 0 8px, #f6c3d2 8px 16px);
+      background-size: 22.6px 7px;
+      animation: uc-tape 1.2s linear infinite;
+    }
+    .uc-body {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 1rem;
+    }
+    .uc-crew { position: relative; display: inline-flex; align-items: flex-end; font-size: 1.5rem; line-height: 1; }
+    .uc-worker { display: inline-block; animation: uc-bob 0.9s ease-in-out infinite; }
+    .uc-hammer {
+      display: inline-block;
+      font-size: 1.1rem;
+      margin-left: -0.15rem;
+      transform-origin: 85% 85%;
+      animation: uc-hammer 0.9s ease-in-out infinite;
+    }
+    .uc-spark {
+      position: absolute;
+      right: -0.6rem;
+      bottom: 0.1rem;
+      font-size: 0.8rem;
+      opacity: 0;
+      animation: uc-spark 0.9s ease-out infinite;
+    }
+    .uc-text { font-size: 0.92rem; font-weight: 400; color: #6b1a2a; }
+    @keyframes uc-tape { to { background-position: 22.6px 0; } }
+    @keyframes uc-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    @keyframes uc-hammer { 0%, 100% { transform: rotate(-45deg); } 45% { transform: rotate(15deg); } 55% { transform: rotate(10deg); } }
+    @keyframes uc-spark { 0%, 40% { opacity: 0; transform: scale(0.4); } 50% { opacity: 1; transform: scale(1.1); } 80%, 100% { opacity: 0; transform: scale(0.6) translateY(-6px); } }
+    @media (prefers-reduced-motion: reduce) { .uc-tape, .uc-worker, .uc-hammer, .uc-spark { animation: none; } }
 
     .page-subtitle {
       font-size: 0.68rem;
@@ -270,6 +308,10 @@
       .page-title { padding: 1.5rem 1.5rem 0; }
       nav { padding: 1.5rem 1.5rem 0; }
     }
+    @media (max-width: 600px) {
+      nav { flex-wrap: wrap; gap: 0.75rem 0; }
+      .nav-links { flex-wrap: wrap; gap: 0.75rem 1.2rem; font-size: 0.78rem; }
+    }
   </style>
 </head>
 <body>
@@ -284,18 +326,21 @@
     </div>
   </nav>
 
-  <!-- under construction for now; original page kept below, hidden -->
-  <div class="construction">
-    <h1><em>Under</em><br>construction.</h1>
-    <p>My projects are coming soon. Please excuse the monkey with the hammer <span class="emoji">🐒🔨</span></p>
-  </div>
-
-  <div class="page-title" hidden>
+  <div class="page-title">
     <h1><em>Things</em><br>I'm making.</h1>
     <p class="page-subtitle">passions &amp; projects</p>
+    <div class="uc" role="note">
+      <div class="uc-tape" aria-hidden="true"></div>
+      <div class="uc-body">
+        <span class="uc-crew" aria-hidden="true"><span class="uc-worker">👷‍♀️</span><span class="uc-hammer">🔨</span><span class="uc-spark">✨</span></span>
+        <span class="uc-text">under construction, pardon the dust</span>
+      </div>
+      <div class="uc-tape" aria-hidden="true"></div>
+    </div>
   </div>
 
-  <div class="main" hidden>
+  <!-- folders hidden for now; remove hidden to bring them back -->
+  <div class="main" hidden style="display:none">
     <div class="folders-grid">
 
         <div class="folder">
