@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rani kronenberger — projects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&family=Patrick+Hand&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'BulgaryRose';
@@ -75,49 +75,46 @@
 
     h1 em { font-style: italic; }
 
-    .uc {
-      display: inline-block;
-      margin-top: 1.2rem;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fde8f0;
-      box-shadow: 0 2px 10px rgba(107, 26, 42, 0.08);
+    .loading {
+      margin: clamp(3rem, 10vh, 6rem) 0 0;
+      width: min(100%, 760px);
     }
-    .uc-tape {
-      height: 7px;
-      background: repeating-linear-gradient(-45deg, #6b1a2a 0 8px, #f6c3d2 8px 16px);
-      background-size: 22.6px 7px;
-      animation: uc-tape 1.2s linear infinite;
+    .loading-bar { display: block; width: 100%; height: auto; overflow: visible; }
+    .loading-outline {
+      fill: none;
+      stroke: #111;
+      stroke-width: 3.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
     }
-    .uc-body {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.55rem 1rem;
+    .loading-fill {
+      transform-box: view-box;
+      transform-origin: 0 0;
+      animation: loading-fill 6s cubic-bezier(.4,.1,.3,1) infinite;
     }
-    .uc-crew { position: relative; display: inline-flex; align-items: flex-end; font-size: 1.5rem; line-height: 1; }
-    .uc-worker { display: inline-block; animation: uc-bob 0.9s ease-in-out infinite; }
-    .uc-hammer {
-      display: inline-block;
-      font-size: 1.1rem;
-      margin-left: -0.15rem;
-      transform-origin: 85% 85%;
-      animation: uc-hammer 0.9s ease-in-out infinite;
+    .loading-text {
+      margin-top: 1rem;
+      font-family: 'Patrick Hand', 'Comic Sans MS', cursive;
+      font-size: clamp(1.4rem, 4.2vw, 2.4rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #111;
+      padding-left: clamp(0.5rem, 3vw, 1.5rem);
     }
-    .uc-spark {
-      position: absolute;
-      right: -0.6rem;
-      bottom: 0.1rem;
-      font-size: 0.8rem;
-      opacity: 0;
-      animation: uc-spark 0.9s ease-out infinite;
+    .dots span { animation: dot 1.5s infinite; opacity: 0; }
+    .dots span:nth-child(2) { animation-delay: 0.25s; }
+    .dots span:nth-child(3) { animation-delay: 0.5s; }
+    @keyframes loading-fill {
+      0%   { transform: scaleX(0.03); }
+      55%  { transform: scaleX(0.42); }
+      85%  { transform: scaleX(0.44); }
+      100% { transform: scaleX(0.03); }
     }
-    .uc-text { font-size: 0.92rem; font-weight: 400; color: #6b1a2a; }
-    @keyframes uc-tape { to { background-position: 22.6px 0; } }
-    @keyframes uc-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-    @keyframes uc-hammer { 0%, 100% { transform: rotate(-45deg); } 45% { transform: rotate(15deg); } 55% { transform: rotate(10deg); } }
-    @keyframes uc-spark { 0%, 40% { opacity: 0; transform: scale(0.4); } 50% { opacity: 1; transform: scale(1.1); } 80%, 100% { opacity: 0; transform: scale(0.6) translateY(-6px); } }
-    @media (prefers-reduced-motion: reduce) { .uc-tape, .uc-worker, .uc-hammer, .uc-spark { animation: none; } }
+    @keyframes dot { 0%, 20% { opacity: 0; } 30%, 100% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      .loading-fill { animation: none; transform: scaleX(0.42); }
+      .dots span { animation: none; opacity: 1; }
+    }
 
     .page-subtitle {
       font-size: 0.68rem;
@@ -312,6 +309,21 @@
       nav { flex-wrap: wrap; gap: 0.75rem 0; }
       .nav-links { flex-wrap: wrap; gap: 0.75rem 1.2rem; font-size: 0.78rem; }
     }
+  
+    /* ── PHONES: menu always fits ── */
+    @media (max-width: 600px) {
+      nav, .topbar { flex-wrap: wrap; gap: 0.75rem 0; }
+      .nav-links { flex-wrap: wrap; gap: 0.6rem 1.1rem; font-size: 0.8rem; }
+      .nav-links a { font-size: 0.8rem; }
+    }
+    @media (max-width: 360px) {
+      .nav-links { gap: 0.5rem 0.9rem; }
+      .nav-links a { font-size: 0.76rem; }
+    }
+    @media (max-width: 420px) {
+      .uc-body { padding: 0.5rem 0.8rem; gap: 0.5rem; }
+      .uc-text { font-size: 0.82rem; }
+    }
   </style>
 </head>
 <body>
@@ -328,14 +340,22 @@
 
   <div class="page-title">
     <h1><em>Things</em><br>I'm making.</h1>
-    <div class="uc" role="note">
-      <div class="uc-tape" aria-hidden="true"></div>
-      <div class="uc-body">
-        <span class="uc-crew" aria-hidden="true"><span class="uc-worker">👷‍♀️</span><span class="uc-hammer">🔨</span><span class="uc-spark">✨</span></span>
-        <span class="uc-text">under construction, pardon the dust</span>
-      </div>
-      <div class="uc-tape" aria-hidden="true"></div>
-    </div>
+    <figure class="loading" role="img" aria-label="Masterpiece loading">
+      <svg class="loading-bar" viewBox="0 0 600 64" aria-hidden="true">
+        <defs>
+          <clipPath id="bar-inside"><path d="M8 12 C150 9 330 11 592 8 L593 52 C400 55 200 53 9 55 Z"/></clipPath>
+        </defs>
+        <g clip-path="url(#bar-inside)">
+          <g class="loading-fill">
+            <rect x="0" y="0" width="600" height="64" fill="#ff1f8f"/>
+            <path d="M0 20 C120 17 300 23 600 19" stroke="#ff5aa8" stroke-width="7" fill="none" opacity="0.55"/>
+            <path d="M0 42 C160 45 330 39 600 44" stroke="#e0006f" stroke-width="6" fill="none" opacity="0.35"/>
+          </g>
+        </g>
+        <path class="loading-outline" d="M8 12 C150 9 330 11 592 8 L593 52 C400 55 200 53 9 55 Z M8 12 L9.5 56"/>
+      </svg>
+      <figcaption class="loading-text">Masterpiece loading<span class="dots"><span>.</span><span>.</span><span>.</span></span></figcaption>
+    </figure>
   </div>
 
   <!-- folders hidden for now; remove hidden to bring them back -->
