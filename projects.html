@@ -75,6 +75,11 @@
 
     h1 em { font-style: italic; }
 
+    [hidden] { display: none !important; }
+    .construction { padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 0; }
+    .construction h1 { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .construction p { font-size: 1.05rem; font-weight: 300; color: #6b1a2a; }
+
     .page-subtitle {
       font-size: 0.68rem;
       font-weight: 300;
@@ -278,12 +283,18 @@
     </div>
   </nav>
 
-  <div class="page-title">
+  <!-- under construction for now; original page kept below, hidden -->
+  <div class="construction">
+    <h1><em>Projects.</em></h1>
+    <p>This page is under construction. Come back soon.</p>
+  </div>
+
+  <div class="page-title" hidden>
     <h1><em>Things</em><br>I'm making.</h1>
     <p class="page-subtitle">passions &amp; projects</p>
   </div>
 
-  <div class="main">
+  <div class="main" hidden>
     <div class="folders-grid">
 
         <div class="folder">

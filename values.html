@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rani kronenberger · values</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&family=Homemade+Apple&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'BulgaryRose';
@@ -80,7 +80,7 @@
     .nav-links a:hover { opacity: 0.4; }
 
     h1 {
-      font-family: 'Figtree', sans-serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(3.5rem, 7vw, 7rem);
       font-weight: 300;
       line-height: 0.95;
@@ -107,34 +107,15 @@
       flex-direction: column;
     }
 
-    .value-item {
-      padding: 1.4rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      display: grid;
-      grid-template-columns: 2rem 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    .value-item:first-child {
-      border-top: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .value-num {
-      font-size: 0.65rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.4);
-      padding-top: 0.2rem;
-      letter-spacing: 0.06em;
-    }
-
     .value-quote {
-      font-family: 'Figtree', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 300;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.9);
+      font-family: 'Homemade Apple', cursive;
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.92);
+      margin: 0.9rem 0;
     }
+    .value-quote { display: grid; grid-template-columns: 2.2rem 1fr; }
+    .value-num { color: #ff1f8f; font-size: 1.25em; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
 
     @media (max-width: 960px) {
       .page-card { padding: 1.75rem 2rem 3rem; }
@@ -177,54 +158,20 @@
     <h1><em>Core</em><br>values.</h1>
 
     <div class="values-list">
-      <div class="value-item">
-        <span class="value-num">01</span>
-        <p class="value-quote">Time is your most valuable currency. Spend it wisely.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">02</span>
-        <p class="value-quote">Create, don't just consume.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">03</span>
-        <p class="value-quote">Pivot quickly and fail forward.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">04</span>
-        <p class="value-quote">Joy is an act of resistance. the world is not designed for you to feel it. So be fiercely, deliberately, unapologetically joyful.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">05</span>
-        <p class="value-quote">Stay authentic to who you truly are. Authenticity is infectious too. It inspires people to dare to be themselves.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">06</span>
-        <p class="value-quote">Go quick and scrappy and iterate from there. Never work on something in isolation.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">07</span>
-        <p class="value-quote">Less talking, more listening.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">08</span>
-        <p class="value-quote">In a world optimised for speed and performance, empathy is the most radical thing you can lead with. stay human.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">09</span>
-        <p class="value-quote">"A well characterized need is the DNA of a great invention," says Josh Makower.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">11</span>
-        <p class="value-quote">Stubbornness will kill connections, possibilities and your own happiness. Be agile and flexible: in life, with yourself and with others.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">12</span>
-        <p class="value-quote">Comparison is where dreams go to die. Everyone has their own timeline. You do you.</p>
-      </div>
-      <div class="value-item">
-        <span class="value-num">13</span>
-        <p class="value-quote">Be kind and pay it forward. Something as simple as a smile could shift someone's day.</p>
-      </div>
+      <p class="value-quote"><span class="value-num">1.</span>Time is your most valuable currency. Spend it wisely in ways that align with you.</p>
+      <p class="value-quote"><span class="value-num">2.</span>Pivot quickly and fail forward.</p>
+      <p class="value-quote"><span class="value-num">3.</span>Fall flat on your face, have a good cry about it, then get back up and try again tomorrow.</p>
+      <p class="value-quote"><span class="value-num">4.</span>go quick and scrappy and iterate from there. Never work on something in isolation.</p>
+      <p class="value-quote"><span class="value-num">5.</span>Comparison is where dreams go to die. Everyone has their own timeline. You do you.</p>
+      <p class="value-quote"><span class="value-num">6.</span>Stay authentic to who you truly are. (don't let people tell you who to be)</p>
+      <p class="value-quote"><span class="value-num">7.</span>Embarrassment doesn't exist if you don't allow it.</p>
+      <p class="value-quote"><span class="value-num">8.</span>In a world optimised for speed and performance, empathy is the most radical thing you can lead with. stay human!!</p>
+      <p class="value-quote"><span class="value-num">9.</span>Stubbornness will kill connections, possibilities and your own happiness. Be agile and flexible: in life, with yourself and with others.</p>
+      <p class="value-quote"><span class="value-num">10.</span>Create, don't just consume.</p>
+      <p class="value-quote"><span class="value-num">11.</span>We're only on this planet for a little while. Enjoy the fucking process.</p>
+      <p class="value-quote"><span class="value-num">12.</span>Less talking, more listening. And ask questions!</p>
+      <p class="value-quote"><span class="value-num">13.</span>Be kind and pay it forward when you feel you can.</p>
+      <p class="value-quote"><span class="value-num">14.</span>“A well characterized need is the DNA of a great invention,” Josh Makower, a true inspiration</p>
     </div>
 
   </div>
