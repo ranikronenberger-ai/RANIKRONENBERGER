@@ -338,8 +338,15 @@
             <feGaussianBlur stdDeviation="2.2"/>
           </filter>
           <mask id="bar-progress" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="64">
-            <path fill="#fff" filter="url(#edge-soft)"
-              d="M0 0 H246 C253 4 249 9 255 13 C261 18 252 23 258 28 C264 33 254 38 259 43 C263 48 253 53 257 58 C259 62 252 64 250 64 H0 Z"/>
+            <g filter="url(#edge-soft)">
+              <path fill="#fff"
+                d="M-700 0 H-4 C3 4 -1 9 5 13 C11 18 2 23 8 28 C14 33 4 38 9 43 C13 48 3 53 7 58 C9 62 2 64 0 64 H-700 Z">
+                <!-- fills from 0% to 70% (x 420 of 600), holds, then starts again -->
+                <animateTransform attributeName="transform" type="translate" dur="7s" repeatCount="indefinite"
+                  values="0 0;420 0;420 0;0 0" keyTimes="0;0.7;0.95;1" calcMode="spline"
+                  keySplines=".45 .05 .35 1;0 0 1 1;.4 0 .6 1"/>
+              </path>
+            </g>
           </mask>
         </defs>
         <g clip-path="url(#bar-inside)">
