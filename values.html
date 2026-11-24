@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rani kronenberger · values</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&family=Zeyada&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&family=Homemade+Apple&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'BulgaryRose';
@@ -108,20 +108,17 @@
     }
 
     .value-quote {
-      font-family: 'Zeyada', cursive;
-      font-weight: 400;
-      font-size: clamp(1.8rem, 3.7vw, 2.3rem);
-      line-height: 1.2;
-      word-spacing: -0.05em;
+      font-family: 'Homemade Apple', cursive;
+      font-size: clamp(1.1rem, 2.3vw, 1.35rem);
+      line-height: 2.1;
+      letter-spacing: 0.02em;
+      word-spacing: 0.12em;
       color: #fff;
       text-shadow: 0 0 10px rgba(0,0,0,0.3);
       margin: 1rem 0;
     }
     .value-quote { display: grid; grid-template-columns: 2.4rem 1fr; }
-    .value-num { color: #9fd8ff; }
-    /* hand-written wobble: each letter sits slightly differently */
-    .hw-word { display: inline-block; white-space: nowrap; }
-    .hw-ch { display: inline-block; }
+    .value-num { color: #9fd8ff; font-size: 1.25em; }
 
     @media (max-width: 960px) {
       .page-card { padding: 1.75rem 2rem 3rem; }
@@ -193,34 +190,5 @@
 
   </div>
 
-  <script>
-    // make the values look genuinely hand-written: tiny random wobble per letter
-    (function () {
-      let seed = 7;
-      const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280 - 0.5; };
-      document.querySelectorAll('.value-quote').forEach(q => {
-        const tilt = rnd() * 0.8; // each line drifts a hair, still reads horizontal
-        q.style.transform = `rotate(${tilt.toFixed(2)}deg)`;
-        const text = document.createElement('span'); text.className = 'hw-text';
-        [...q.childNodes].forEach(node => {
-          if (node.nodeType !== 3) return;
-          const frag = text;
-          node.textContent.split(/(\s+)/).forEach(part => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-            const w = document.createElement('span'); w.className = 'hw-word';
-            for (const ch of part) {
-              const c = document.createElement('span'); c.className = 'hw-ch'; c.textContent = ch;
-              c.style.transform = `translateY(${(rnd() * 0.09).toFixed(3)}em) rotate(${(rnd() * 5).toFixed(1)}deg) scale(${(1 + rnd() * 0.08).toFixed(3)})`;
-              w.appendChild(c);
-            }
-            frag.appendChild(w);
-          });
-          node.remove();
-        });
-        q.appendChild(text);
-      });
-    })();
-  </script>
 </body>
 </html>
