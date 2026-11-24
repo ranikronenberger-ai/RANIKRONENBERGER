@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rani kronenberger</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Homemade+Apple&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'BulgaryRose';
@@ -104,13 +104,102 @@
       color: #2a2a2a;
     }
 
+    .intro strong { font-weight: 600; }
+
+    .caption-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .dont-push {
+      margin-top: 0.65rem;
+      margin-left: auto;
+      padding: 0.25rem 0.7rem;
+      border: none;
+      border-radius: 999px;
+      background: #f6c3d2;
+      color: #6b1a2a;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+    .dont-push:hover { opacity: 0.8; }
+
+    .zap {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .zap .clear {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.5rem, 9vw, 7rem);
+      color: #6b1a2a;
+      background: #f6c3d2;
+      padding: 0.2em 0.6em;
+      border-radius: 0.3em;
+      transform: rotate(-4deg);
+    }
+    .zap.flash { background: rgba(255, 255, 255, 0.9); }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: clamp(16px, 4vh, 3rem);
+      transform: translateX(-50%);
+      z-index: 9999;
+      max-width: calc(100vw - 32px);
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      background: #6b1a2a;
+      color: #fff;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.85rem;
+      text-align: center;
+      pointer-events: none;
+    }
+
+
     .intro p + p { margin-top: 0.9rem; }
     .intro p + p.tight { margin-top: 0.45rem; }
 
     .intro .signoff {
       margin-top: 1.4rem;
-      font-style: italic;
-      color: #6b1a2a;
+      color: #e598ae;
+    }
+
+    .intro .signoff .kid {
+      display: inline-block;
+      font-family: 'Homemade Apple', cursive;
+      font-size: 1.05em;
+      letter-spacing: 0.02em;
+      transform: rotate(-1.5deg);
+    }
+
+    .intro .signoff .kid span {
+      display: inline-block;
+    }
+
+    .intro .signoff .kid .gap {
+      width: 0.7em;
+    }
+
+    .intro .signoff .hartje {
+      width: 1.1em;
+      height: 1.05em;
+      margin-left: 0.3em;
+      vertical-align: -0.15em;
+      transform: rotate(-8deg);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .right {
@@ -306,13 +395,12 @@
       <div class="left">
         <h1 class="hello">Hi, I'm Rani <span class="say-it">(RAH-NEE), but I go by Raan.</span></h1>
         <div class="intro">
-          <p>A high-agency creative in the body of an academic. Rigorous in my work, spirited in life.</p>
-          <p class="tight">Medical doctor, PhD candidate in cardiac ablation surgery (21+ publications), Stanford Biodesign alum and former surgical trainee (general surgery).</p>
-          <p>I have a strong foundation in identifying unmet needs and developing concepts, built at Stanford Biodesign and through my own ventures. Along the way, I came to see storytelling as part of good science. I've been building both, and the storytelling is now taking shape as a novel.</p>
-          <p>I bring a European perspective and a Silicon Valley work ethic.</p>
-          <p>What I care about: making a change for women in the world and using my creative vision for real impact. And maximizing shareholder value, of course (if you hire me).</p>
+          <p class="tight"><strong>Bio:</strong> I'm a creative in the body of an academic. Medical doctor, PhD candidate in cardiac ablation surgery (21+ publications), Stanford Biodesign alum and former surgical trainee (general surgery). I'm practiced in identifying unmet needs and developing concepts.</p>
+          <p>Along the way, I came to see storytelling as part of good science. I'm obsessed with it on the page, on (amateur) film and in spaces I build for women and for love. The writing is now taking shape as a novel.</p>
+          <p>I bring a European perspective and a Silicon Valley approach to work.</p>
+          <p><strong>What I care about:</strong> making a change for women in the world and using my creative vision for real impact. And maximizing shareholder value, of course (if you hire me).</p>
           <p>Off the clock, I'm the least cool person in the snowboard park, or losing to my dad at chess.</p>
-          <p class="signoff">Met Belgische groetjes</p>
+          <p class="signoff"><span class="kid" aria-label="Met Belgische groetjes"><span style="transform:translateY(-0.01em) rotate(0deg) scale(1.05)">M</span><span style="transform:translateY(-0.00em) rotate(0deg) scale(1.01)">e</span><span style="transform:translateY(-0.04em) rotate(0deg) scale(1.02)">t</span><span class="gap"></span><span style="transform:translateY(0.04em) rotate(-3deg) scale(0.98)">B</span><span style="transform:translateY(-0.05em) rotate(2deg) scale(1.03)">e</span><span style="transform:translateY(-0.05em) rotate(4deg) scale(1.06)">l</span><span style="transform:translateY(0.02em) rotate(1deg) scale(0.97)">g</span><span style="transform:translateY(-0.06em) rotate(0deg) scale(0.96)">i</span><span style="transform:translateY(-0.04em) rotate(-2deg) scale(0.95)">s</span><span style="transform:translateY(-0.00em) rotate(-0deg) scale(1.04)">c</span><span style="transform:translateY(0.00em) rotate(1deg) scale(1.00)">h</span><span style="transform:translateY(0.02em) rotate(-0deg) scale(0.98)">e</span><span class="gap"></span><span style="transform:translateY(0.06em) rotate(4deg) scale(1.04)">g</span><span style="transform:translateY(0.02em) rotate(-1deg) scale(0.98)">r</span><span style="transform:translateY(-0.03em) rotate(-3deg) scale(1.03)">o</span><span style="transform:translateY(-0.01em) rotate(3deg) scale(0.99)">e</span><span style="transform:translateY(0.05em) rotate(3deg) scale(0.95)">t</span><span style="transform:translateY(-0.03em) rotate(3deg) scale(1.00)">j</span><span style="transform:translateY(0.06em) rotate(-1deg) scale(0.96)">e</span><span style="transform:translateY(0.02em) rotate(2deg) scale(0.98)">s</span></span> <svg class="hartje" viewBox="0 0 32 30" aria-hidden="true"><path d="M16.5 27.5 C12 23.5 4.5 18 3.2 11.5 C2.3 6.8 5.4 3.2 9.2 3.4 C12.6 3.6 14.8 6.4 15.9 9.3 C17.1 6 19.6 3 23.4 3.1 C27.6 3.3 29.6 7.2 28.7 11.3 C27.4 17.4 21 22.6 15.6 27.9 C15.3 28.2 14.6 27.6 14.9 27.1"/></svg></p>
         </div>
       </div>
 
@@ -321,7 +409,10 @@
           <video class="portrait" poster="hero-still.jpg" id="hero-video" src="cred-video.mp4" autoplay muted playsinline loop preload="auto" disablepictureinpicture></video>
           <div style="position:absolute;inset:0;z-index:1;pointer-events:auto;"></div>
         </div>
-        <p class="caption">Biodesign Fellowship, Stanford University, 2026</p>
+        <div class="caption-row">
+          <p class="caption">Biodesign Fellowship, Stanford University, 2026</p>
+          <button class="dont-push" type="button" id="dont-push">don't push this button</button>
+        </div>
       </div>
 
     </div>
@@ -331,6 +422,43 @@
   <script>
     const hv = document.getElementById('hero-video');
     hv.addEventListener('loadedmetadata', () => { hv.currentTime = 6; });
+
+    const pushBtn = document.getElementById('dont-push');
+    const pushLines = ["🙄 I said don't", "😤 seriously?", "🙈 ok fine, again", "don't push this button"];
+    let pushes = 0;
+    pushBtn.addEventListener('click', () => {
+      if (document.querySelector('.zap')) return;
+      const page = document.querySelector('.hero') || document.body;
+      const zap = document.createElement('div');
+      zap.className = 'zap';
+      zap.innerHTML = '<div class="clear">⚡ CLEAR! ⚡</div>';
+      document.body.appendChild(zap);
+
+      setTimeout(() => {
+        zap.classList.add('flash');
+        zap.innerHTML = '';
+        const start = performance.now();
+        const jolt = now => {
+          const t = (now - start) / 1000;
+          if (t > 0.5) { page.style.transform = ''; return; }
+          const k = 1 - t / 0.5;
+          page.style.transform = `translate(${(Math.random() - 0.5) * 30 * k}px, ${(Math.random() - 0.5) * 20 * k}px) rotate(${(Math.random() - 0.5) * 3 * k}deg)`;
+          requestAnimationFrame(jolt);
+        };
+        requestAnimationFrame(jolt);
+      }, 900);
+
+      setTimeout(() => {
+        zap.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = "🫀 sinus rhythm restored. please don't do that again.";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2600);
+        pushBtn.textContent = pushLines[pushes];
+        pushes = (pushes + 1) % pushLines.length;
+      }, 1050);
+    });
   </script>
 </body>
 </html>
