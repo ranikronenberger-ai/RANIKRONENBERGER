@@ -124,45 +124,12 @@
       font-family: 'Figtree', sans-serif;
       font-size: 0.7rem;
       cursor: pointer;
+      position: relative;
+      z-index: 20;
+      transition: transform 0.25s ease-out;
     }
     .dont-push:hover { opacity: 0.8; }
 
-    .zap {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .zap .clear {
-      font-family: 'Figtree', sans-serif;
-      font-weight: 600;
-      font-size: clamp(2.5rem, 9vw, 7rem);
-      color: #6b1a2a;
-      background: #f6c3d2;
-      padding: 0.2em 0.6em;
-      border-radius: 0.3em;
-      transform: rotate(-4deg);
-    }
-    .zap.flash { background: rgba(255, 255, 255, 0.9); }
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: clamp(16px, 4vh, 3rem);
-      transform: translateX(-50%);
-      z-index: 9999;
-      max-width: calc(100vw - 32px);
-      padding: 0.6rem 1rem;
-      border-radius: 999px;
-      background: #6b1a2a;
-      color: #fff;
-      font-family: 'Figtree', sans-serif;
-      font-size: 0.85rem;
-      text-align: center;
-      pointer-events: none;
-    }
 
 
     .intro p + p { margin-top: 0.9rem; }
@@ -396,7 +363,7 @@
         <h1 class="hello">Hi, I'm Rani <span class="say-it">(RAH-NEE), but I go by Raan.</span></h1>
         <div class="intro">
           <p class="tight"><strong>Bio:</strong> I'm a creative in the body of an academic. Medical doctor, PhD candidate in cardiac ablation surgery (21+ publications), Stanford Biodesign alum and former surgical trainee (general surgery). I'm practiced in identifying unmet needs and developing concepts.</p>
-          <p>Along the way, I came to see storytelling as part of good science. I'm obsessed with it on the page, on (amateur) film and in spaces I build for women and for love. The writing is now taking shape as a novel.</p>
+          <p>I'm also obsessed with storytelling, on the page, on (amateur) film and in spaces I build for women and for love. The writing is now taking shape as a novel.</p>
           <p>I bring a European perspective and a Silicon Valley approach to work.</p>
           <p><strong>What I care about:</strong> making a change for women in the world and using my creative vision for real impact. And maximizing shareholder value, of course (if you hire me).</p>
           <p>Off the clock, I'm the least cool person in the snowboard park, or losing to my dad at chess.</p>
@@ -424,40 +391,44 @@
     hv.addEventListener('loadedmetadata', () => { hv.currentTime = 6; });
 
     const pushBtn = document.getElementById('dont-push');
-    const pushLines = ["🙄 I said don't", "😤 seriously?", "🙈 ok fine, again", "don't push this button"];
-    let pushes = 0;
-    pushBtn.addEventListener('click', () => {
-      if (document.querySelector('.zap')) return;
-      const page = document.querySelector('.hero') || document.body;
-      const zap = document.createElement('div');
-      zap.className = 'zap';
-      zap.innerHTML = '<div class="clear">⚡ CLEAR! ⚡</div>';
-      document.body.appendChild(zap);
+    let dx = 0, dy = 0;
 
-      setTimeout(() => {
-        zap.classList.add('flash');
-        zap.innerHTML = '';
-        const start = performance.now();
-        const jolt = now => {
-          const t = (now - start) / 1000;
-          if (t > 0.5) { page.style.transform = ''; return; }
-          const k = 1 - t / 0.5;
-          page.style.transform = `translate(${(Math.random() - 0.5) * 30 * k}px, ${(Math.random() - 0.5) * 20 * k}px) rotate(${(Math.random() - 0.5) * 3 * k}deg)`;
-          requestAnimationFrame(jolt);
-        };
-        requestAnimationFrame(jolt);
-      }, 900);
+    const runAway = (px, py) => {
+      const r = pushBtn.getBoundingClientRect();
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      let ax = cx - px, ay = cy - py;
+      const len = Math.hypot(ax, ay) || 1;
+      ax /= len; ay /= len;
+      const jump = 90 + Math.random() * 60;
+      let nx = r.left + ax * jump + (Math.random() - 0.5) * 60;
+      let ny = r.top + ay * jump + (Math.random() - 0.5) * 60;
+      const pad = 16;
+      const maxX = window.innerWidth - r.width - pad, maxY = window.innerHeight - r.height - pad;
+      if (nx < pad || nx > maxX) nx = r.left - ax * jump;
+      if (ny < pad || ny > maxY) ny = r.top - ay * jump;
+      nx = Math.min(Math.max(nx, pad), maxX);
+      ny = Math.min(Math.max(ny, pad), maxY);
+      dx += nx - r.left; dy += ny - r.top;
+      pushBtn.style.transform = `translate(${dx}px, ${dy}px)`;
+    };
 
-      setTimeout(() => {
-        zap.remove();
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.textContent = "🫀 sinus rhythm restored. please don't do that again.";
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 2600);
-        pushBtn.textContent = pushLines[pushes];
-        pushes = (pushes + 1) % pushLines.length;
-      }, 1050);
+    document.addEventListener('mousemove', e => {
+      const r = pushBtn.getBoundingClientRect();
+      const nearX = Math.max(r.left - e.clientX, 0, e.clientX - r.right);
+      const nearY = Math.max(r.top - e.clientY, 0, e.clientY - r.bottom);
+      if (Math.hypot(nearX, nearY) < 40) runAway(e.clientX, e.clientY);
+    });
+
+    pushBtn.addEventListener('touchstart', e => {
+      e.preventDefault();
+      const t = e.touches[0];
+      runAway(t.clientX, t.clientY);
+    }, { passive: false });
+
+    pushBtn.addEventListener('click', e => {
+      e.preventDefault();
+      const r = pushBtn.getBoundingClientRect();
+      runAway(r.left, r.top);
     });
   </script>
 </body>
